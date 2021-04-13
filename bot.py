@@ -10,7 +10,7 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('logged in as {0.user}'.format(client))
 
 @client.event
 async def on_message(message):
@@ -25,6 +25,7 @@ async def on_message(message):
             strlen += '='
             i
         await message.channel.send(message.author.mention+" Your dick is this long ˅```8" + strlen + "D```")
-
+    if "boobs" in str(message.content.lower()) or "tits" in str(message.content.lower()) or "breasts" in str(message.content.lower()):
+        await message.channel.send("``(.) (.)``")
 
 client.run(getenv("KEY"))
