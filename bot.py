@@ -1,2 +1,3 @@
-#!/usr/bun/python
+#!/usr/bin/python
 
+import discord
