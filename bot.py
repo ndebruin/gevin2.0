@@ -3,6 +3,32 @@ from os import getenv
 import discord
 from dotenv import load_dotenv
 from random import randint
+import icalendar
+import recurring_ical_events
+from datetime import date
+
+def dailyevents():
+    cal = open("icalfeed.ics")
+
+    today = date.today()
+
+    olddate = ""
+
+    calendar = icalendar.Calendar.from_ical(cal.read())
+    events = recurring_ical_events.of(calendar).at(2021)
+
+    for event in events:
+            day = event["DTSTART"].dt
+            if str(day) == str(today):
+                    summary = event["SUMMARY"]
+                    if olddate == day and "asynchronous" in summary.lower():
+                            events.append("Asynchronous Day")
+                    else:
+                            events = [str(day), str(summary)]
+                    olddate = day
+                
+    return(events)
+    #print(events)
 
 load_dotenv()
 
