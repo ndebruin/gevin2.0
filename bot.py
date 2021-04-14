@@ -53,5 +53,7 @@ async def on_message(message):
         await message.channel.send(message.author.mention+" Your dick is this long ˅```8" + strlen + "D```")
     if "boobs" in str(message.content.lower()) or "tits" in str(message.content.lower()) or "breasts" in str(message.content.lower()):
         await message.channel.send("``(.) (.)``")
+    if "testing" in str(message.content.lower()):
+        await message.channel.send(dailyevents())
 
 client.run(getenv("KEY"))
