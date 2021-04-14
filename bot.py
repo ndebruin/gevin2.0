@@ -7,7 +7,9 @@ import icalendar
 import recurring_ical_events
 from datetime import date
 
-def dailyevents():
+
+
+def get_dailyevents():
     cal = open("icalfeed.ics")
 
     today = date.today()
@@ -54,6 +56,7 @@ async def on_message(message):
     if "boobs" in str(message.content.lower()) or "tits" in str(message.content.lower()) or "breasts" in str(message.content.lower()):
         await message.channel.send("``(.) (.)``")
     if "testing" in str(message.content.lower()):
-        await message.channel.send(dailyevents())
+        await message.channel.send("``"+str(get_dailyevents())+"``")
 
 client.run(getenv("KEY"))
+
