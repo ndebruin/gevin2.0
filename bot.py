@@ -9,7 +9,7 @@ from datetime import date
 
 cal = open("icalfeed.ics")
 today = date.today()
-#today = "2021-04-14"
+today = "2021-04-14"
 
 def get_dailyevents():
     olddate = ""
@@ -33,7 +33,7 @@ def print_events():
     dailyevents = get_dailyevents()
     if dailyevents[0] == str(today):
         day = dailyevents[1]
-        if (2 in dailyevents):
+        if 2 in dailyevents:
             return("Today is a {}, and is an Asynchronous Day.".format(day))
         else:
             return("Today is a {}.".format(day))
