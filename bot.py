@@ -9,6 +9,7 @@ from datetime import date
 
 cal = open("icalfeed.ics")
 today = date.today()
+#today = "2021-04-14"
 
 def get_dailyevents():
     olddate = ""
@@ -27,7 +28,15 @@ def get_dailyevents():
                     olddate = day
                 
     return(events)
-    #print(events)
+
+def print_events():
+    dailyevents = get_dailyevents()
+    if dailyevents[0] == str(today):
+        day = dailyevents[1]
+        if (2 in dailyevents):
+            return("Today is a {}, and is an Asynchronous Day.".format(day))
+        else:
+            return("Today is a {}.".format(day))
 
 load_dotenv()
 
@@ -53,7 +62,7 @@ async def on_message(message):
     if "boobs" in str(message.content.lower()) or "tits" in str(message.content.lower()) or "breasts" in str(message.content.lower()):
         await message.channel.send("``(.) (.)``")
     if "testing" in str(message.content.lower()):
-        await message.channel.send("``"+str(get_dailyevents())+"``")
+        await message.channel.send(str(print_events()))
 
 client.run(getenv("KEY"))
 
