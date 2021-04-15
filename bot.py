@@ -42,7 +42,7 @@ def format_dailyevents():
             return("@everyone Today is a {}.".format(day))
 
 async def notify_dailyevents():
-    channel = client.get_channel(829155943937212456)
+    channel = client.get_channel(812364127439552563)
     await channel.send(str(format_dailyevents()))
 
 @aiocron.crontab('0 7 * * 1-5')
