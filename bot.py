@@ -7,13 +7,10 @@ import icalendar
 import recurring_ical_events
 from datetime import date
 
-
+cal = open("icalfeed.ics")
+today = date.today()
 
 def get_dailyevents():
-    cal = open("icalfeed.ics")
-
-    today = date.today()
-
     olddate = ""
 
     calendar = icalendar.Calendar.from_ical(cal.read())
