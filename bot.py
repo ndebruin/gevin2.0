@@ -12,7 +12,7 @@ import asyncio
 calfile = open("icalfeed.ics")
 cal = calfile.read()
 today = date.today()
-#today = "2021-04-25"
+
 
 def get_dailyevents():
     olddate = ""
