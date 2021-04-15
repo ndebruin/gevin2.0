@@ -6,15 +6,18 @@ from random import randint
 import icalendar
 import recurring_ical_events
 from datetime import date
+import aiocron
+import asyncio
 
-cal = open("icalfeed.ics")
+calfile = open("icalfeed.ics")
+cal = calfile.read()
 today = date.today()
-#today = "2021-04-14"
+#today = "2021-04-25"
 
 def get_dailyevents():
     olddate = ""
 
-    calendar = icalendar.Calendar.from_ical(cal.read())
+    calendar = icalendar.Calendar.from_ical(cal)
     events = recurring_ical_events.of(calendar).at(2021)
 
     for event in events:
@@ -29,15 +32,25 @@ def get_dailyevents():
                 
     return(events)
 
-def print_events():
+def format_dailyevents():
     dailyevents = get_dailyevents()
     if dailyevents[0] == str(today):
         day = dailyevents[1]
         if "Asynchronous Day" in dailyevents:
-            return("Today is a {}, and is an Asynchronous Day.".format(day))
+            return("@everyone Today is a {}, and is an Asynchronous Day.".format(day))
         else:
-            return("Today is a {}.".format(day))
+            return("@everyone Today is a {}.".format(day))
 
+async def notify_dailyevents():
+    channel = client.get_channel(829155943937212456)
+    await channel.send(str(format_dailyevents()))
+
+
+#@aiocron.crontab('* * * * *')
+@aiocron.crontab('0 7 * * 1-5')
+async def daily_notify():
+    await notify_dailyevents()
+    
 load_dotenv()
 
 client = discord.Client()
@@ -61,8 +74,12 @@ async def on_message(message):
         await message.channel.send(message.author.mention+" Your dick is this long ˅```8" + strlen + "D```")
     if "boobs" in str(message.content.lower()) or "tits" in str(message.content.lower()) or "breasts" in str(message.content.lower()):
         await message.channel.send("``(.) (.)``")
-    if "testing" in str(message.content.lower()):
-        await message.channel.send(str(print_events()))
+    if "^what day" in str(message.content.lower()) and str(message.author.id) == "331237610460807168":
+        await notify_dailyevents()
+        
+daily_notify.start()
+
 
 client.run(getenv("KEY"))
 
+#asyncio.get_event_loop().run_forever()

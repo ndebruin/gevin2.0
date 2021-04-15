@@ -3,4 +3,4 @@ python_dotenv
 icalendar
 recurring_ical_events
 datetime
-schedule
+aiocron
