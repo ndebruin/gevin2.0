@@ -45,8 +45,6 @@ async def notify_dailyevents():
     channel = client.get_channel(829155943937212456)
     await channel.send(str(format_dailyevents()))
 
-
-#@aiocron.crontab('* * * * *')
 @aiocron.crontab('0 7 * * 1-5')
 async def daily_notify():
     await notify_dailyevents()
@@ -79,7 +77,4 @@ async def on_message(message):
         
 daily_notify.start()
 
-
 client.run(getenv("KEY"))
-
-#asyncio.get_event_loop().run_forever()
