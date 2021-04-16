@@ -11,11 +11,10 @@ import asyncio
 
 calfile = open("icalfeed.ics")
 cal = calfile.read()
-today = date.today()
-
 
 def get_dailyevents():
     olddate = ""
+    today = date.today()
 
     calendar = icalendar.Calendar.from_ical(cal)
     events = recurring_ical_events.of(calendar).at(2021)
@@ -34,7 +33,7 @@ def get_dailyevents():
 
 def format_dailyevents():
     dailyevents = get_dailyevents()
-    if dailyevents[0] == str(today):
+    if dailyevents[0] == str(date.today()):
         day = dailyevents[1]
         if "Asynchronous Day" in dailyevents:
             return("@everyone Today is a {}, and is an Asynchronous Day.".format(day))
