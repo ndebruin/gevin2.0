@@ -47,7 +47,12 @@ async def notify_dailyevents():
 @aiocron.crontab('0 7 * * 1-5')
 async def daily_notify():
     await notify_dailyevents()
-    
+
+@aiocron.crontab('47 9 * * *')
+async def temp():
+    channel = client.get_channel(829155943937212456)
+    await channel.send("this should be sent at 9:47 every day") 
+
 load_dotenv()
 
 client = discord.Client()
