@@ -80,5 +80,6 @@ async def on_message(message):
         await notify_dailyevents()
         
 daily_notify.start()
+temp.start()
 
 client.run(getenv("KEY"))
