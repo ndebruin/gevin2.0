@@ -33,7 +33,11 @@ def get_dailyevents():
 
 def format_dailyevents():
     dailyevents = get_dailyevents()
-    if dailyevents[0] == str(date.today()):
+    if str(date.today()) == "2021-05-31":
+        return("@everyone Today is Memorial Day. Enjoy your day off of school!")
+    elif str(date.today()) == "2021-06-10":
+        return("@everyone Today is the **last** day of School! It is also a {}.".format(dailyevents[1]))
+    elif str(date.today()) == dailyevents[0]:
         day = dailyevents[1]
         if "Asynchronous Day" in dailyevents:
             return("@everyone Today is a {}, and is an Asynchronous Day.".format(day))
