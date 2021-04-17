@@ -11,6 +11,7 @@ import asyncio
 from requests import get
 
 load_dotenv()
+client = discord.Client()
 
 callink = getenv("LINK")
 
@@ -94,8 +95,6 @@ async def lunch():
 async def per4():
     channel = client.get_channel(812364127439552563)
     await channel.send("@everyone It is now forth period.")
-
-client = discord.Client()
 
 @client.event
 async def on_ready():
