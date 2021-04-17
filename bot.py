@@ -8,11 +8,15 @@ import recurring_ical_events
 from datetime import date
 import aiocron
 import asyncio
+from requests import get
 
-calfile = open("icalfeed.ics")
-cal = calfile.read()
+load_dotenv()
+
+callink = getenv("LINK")
 
 def get_dailyevents():
+    cal = get(callink)
+    cal = cal.text
     olddate = ""
     today = date.today()
 
@@ -90,8 +94,6 @@ async def lunch():
 async def per4():
     channel = client.get_channel(812364127439552563)
     await channel.send("@everyone It is now forth period.")
-
-load_dotenv()
 
 client = discord.Client()
 
