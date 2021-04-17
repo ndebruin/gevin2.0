@@ -28,12 +28,15 @@ def get_dailyevents():
                     else:
                             events = [str(day), str(summary)]
                     olddate = day
-                
+            else:
+                return(1)    
     return(events)
 
 def format_dailyevents():
     dailyevents = get_dailyevents()
-    if str(date.today()) == "2021-05-31":
+    if dailyevents == 1:
+        return(1)
+    elif str(date.today()) == "2021-05-31":
         return("@everyone Today is Memorial Day. Enjoy your day off of school!")
     elif str(date.today()) == "2021-06-10":
         return("@everyone Today is the **last** day of School! It is also a {}.".format(dailyevents[1]))
@@ -43,10 +46,16 @@ def format_dailyevents():
             return("@everyone Today is a {}, and is an Asynchronous Day.".format(day))
         else:
             return("@everyone Today is a {}.".format(day))
+    else:
+        return(1)
 
 async def notify_dailyevents():
     channel = client.get_channel(812364127439552563)
-    await channel.send(str(format_dailyevents()))
+    message = format_dailyevents()
+    if message == 1:
+        return
+    else:
+        await channel.send(str(format_dailyevents()))
 
 @aiocron.crontab('0 7 * * 1-5')
 async def daily_notify():
