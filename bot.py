@@ -53,6 +53,31 @@ async def temp():
     channel = client.get_channel(829155943937212456)
     await channel.send("this should be sent at 9:47 every day") 
 
+@aiocron.crontab('30 7 * * 1-5')
+async def per1():
+    channel = client.get_channel(812364127439552563)
+    await channel.send("@everyone It is now first period.")
+
+@aiocron.crontab('0 9 * * 1-5')
+async def per2():
+    channel = client.get_channel(812364127439552563)
+    await channel.send("@everyone It is now second period.")
+
+@aiocron.crontab('30 10 * * 1-5')
+async def per3():
+    channel = client.get_channel(812364127439552563)
+    await channel.send("@everyone It is now third period.")
+
+@aiocron.crontab('0 12 * * 1-5')
+async def lunch():
+    channel = client.get_channel(812364127439552563)
+    await channel.send("@everyone It is now lunch.")
+
+@aiocron.crontab('58 12 * * 1-5')
+async def per4():
+    channel = client.get_channel(812364127439552563)
+    await channel.send("@everyone It is now forth period.")
+
 load_dotenv()
 
 client = discord.Client()
@@ -81,5 +106,10 @@ async def on_message(message):
         
 daily_notify.start()
 temp.start()
+per1.start()
+per2.start()
+per3.start()
+lunch.start()
+per4.start()
 
 client.run(getenv("KEY"))
