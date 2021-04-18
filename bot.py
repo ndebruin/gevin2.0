@@ -58,7 +58,7 @@ async def notify_dailyevents():
     channel = client.get_channel(812364127439552563)
     message = format_dailyevents()
     if message == 1:
-        return
+        return(1)
     else:
         await channel.send(str(format_dailyevents()))
 
@@ -116,7 +116,9 @@ async def on_message(message):
     if "boobs" in str(message.content.lower()) or "tits" in str(message.content.lower()) or "breasts" in str(message.content.lower()):
         await message.channel.send("``(.) (.)``")
     if "^what day" in str(message.content.lower()) and str(message.author.id) == "331237610460807168":
-        await notify_dailyevents()
+        temp = await notify_dailyevents()
+        if temp == 1:
+            await message.channel.send(message.author.mention+" Today is not a school day.")
         
 daily_notify.start()
 temp.start()
