@@ -1,13 +1,13 @@
 #!/usr/bin/python
 from os import getenv
 import discord
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 from random import randint
 import aiocron
 import asyncio
 from calfunc import format_dailyevents, format_tomorrowevents
 
-load_dotenv()
+#load_dotenv()
 client = discord.Client()
 
 @aiocron.crontab('0 7 * * 1-5')
