@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from random import randint
 import aiocron
 import asyncio
-from calfunc import get_dailyevents, format_dailyevents
+from calfunc import format_dailyevents, format_tomorrowevents
 
 load_dotenv()
 client = discord.Client()
@@ -68,16 +68,18 @@ async def on_message(message):
         await message.channel.send(message.author.mention+" Your dick is this long ˅```8" + strlen + "D```")
     if "boobs" in str(message.content.lower()) or "tits" in str(message.content.lower()) or "breasts" in str(message.content.lower()):
         await message.channel.send("``(.) (.)``")
-    if "^what day" in str(message.content.lower()):
+    if "^today" in str(message.content.lower()):
         temp = format_dailyevents()
         if temp == 1:
-            await message.channel.send(message.author.mention+" Today is not a school day.")
+            await message.channel.send(message.author.mention+" Today is not a School day.")
         else:
-            await message.channel.send(message.author.mention + temp)
-#    if "^tomorrow" in str(message.content.lower()):
-#        temp = format_dailyevents()
-#        if temp == 1:
-#            await message.channel.send(message.author.mention+" Tomorrow is not a school day.")
+            await message.channel.send(message.author.mention + " " + temp)
+    if "^tomorrow" in str(message.content.lower()):
+        temp = format_tomorrowevents()
+        if temp == 1:
+            await message.channel.send(message.author.mention+" Tomorrow is not a School day.")
+        else:
+            await message.channel.send(message.author.mention + " " + temp)
         
 daily_notify.start()
 temp.start()
