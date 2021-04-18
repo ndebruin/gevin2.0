@@ -115,7 +115,7 @@ async def on_message(message):
         await message.channel.send(message.author.mention+" Your dick is this long ˅```8" + strlen + "D```")
     if "boobs" in str(message.content.lower()) or "tits" in str(message.content.lower()) or "breasts" in str(message.content.lower()):
         await message.channel.send("``(.) (.)``")
-    if "^what day" in str(message.content.lower()) and str(message.author.id) == "331237610460807168":
+    if "^what day" in str(message.content.lower()):
         temp = await notify_dailyevents()
         if temp == 1:
             await message.channel.send(message.author.mention+" Today is not a school day.")
