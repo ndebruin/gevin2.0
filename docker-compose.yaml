@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  gevin:
+    container_name: "gevin_bot"
+    build: src
+    image: gevin:latest
+    environment:
+      - "TZ=America/New_York"
+      - LINK=$LINK
+      - KEY=$KEY
