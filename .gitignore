@@ -1,3 +1,4 @@
 .env
 icalfeed.ics
 __pycache__
+.gitignore
