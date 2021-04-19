@@ -17,7 +17,7 @@ async def daily_notify():
     if message == 1:
         return(1)
     else:
-        await channel.send(str(format_dailyevents()))
+        await channel.send(message)
 
 @aiocron.crontab('47 9 * * *')
 async def temp():
