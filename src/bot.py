@@ -47,7 +47,7 @@ async def lunch():
 @aiocron.crontab('53 12 * * 1-5')
 async def per4():
     channel = client.get_channel(812364127439552563)
-    await channel.send("@everyone It is now forth period.")
+    await channel.send("@everyone It is now fourth period.")
 
 @client.event
 async def on_ready():
