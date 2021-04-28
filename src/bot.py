@@ -18,6 +18,20 @@ async def daily_notify():
         return(1)
     else:
         await channel.send(message)
+        if "Asynchronous Day" in message:
+            no_periods()
+        else:
+            return
+
+
+def no_periods():
+    per1.stop()
+    per2.stop()
+    per3.stop()
+    lunch.stop()
+    per4.stop()
+    period_start.start()
+
 
 @aiocron.crontab('47 9 * * *')
 async def temp():
@@ -48,6 +62,15 @@ async def lunch():
 async def per4():
     channel = client.get_channel(812364127439552563)
     await channel.send("@everyone It is now fourth period.")
+
+@aiocron.crontab('0 22 * * *')
+async def period_start():
+    per1.start()
+    per2.start()
+    per3.start()
+    lunch.start()
+    per4.start()
+    period_start.stop()
 
 @client.event
 async def on_ready():
