@@ -48,7 +48,7 @@ def no_periods():
 @aiocron.crontab('47 9 * * *')
 async def temp():
     channel = client.get_channel(829155943937212456)
-    await channel.send("this should be sent at 9:47 every day") 
+    await channel.send("this should be sent at 9:47 every day")
 
 @aiocron.crontab('25 7 * * 1-5')
 async def per1():

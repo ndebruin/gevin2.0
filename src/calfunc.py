@@ -70,7 +70,7 @@ def get_tomorrowevents():
         return(1)
     else:
         return(events)
-    
+
 
 def format_tomorrowevents():
     tomorrowevents = get_tomorrowevents()
@@ -89,3 +89,4 @@ def format_tomorrowevents():
             return("Tomorrow is a {}.".format(day))
     else:
         return(1)
+
