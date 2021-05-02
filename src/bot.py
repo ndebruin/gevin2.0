@@ -116,8 +116,9 @@ async def on_message(message):
         else:
             await message.channel.send(message.author.mention + " " + temp)
     if "^info" in str(message.content.lower()):
-        await message.channel.send(info_format)
-        
+        await message.channel.send(info_format())
+
+
 daily_notify.start()
 temp.start()
 per1.start()
