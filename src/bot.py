@@ -10,7 +10,7 @@ from datetime import datetime
 from dateutil import relativedelta
 
 start_time = datetime.now()
-info = "This bot was written by draigon, and is under a MIT License. \nMore info can be found here: https://git.draigon.org/ndebruin/gevin2.0 \nThe uptime for this bot is: "
+info = "This bot was written by NDeBruin, and is under a MIT License. \nMore info can be found here: https://git.draigon.org/ndebruin/gevin2.0 \nThe uptime for this bot is: "
 
 def info_format():
     current_time = datetime.now()
