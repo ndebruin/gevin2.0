@@ -6,6 +6,19 @@ from random import randint
 import aiocron
 import asyncio
 from calfunc import format_dailyevents, format_tomorrowevents
+from datetime import datetime
+from dateutil import relativedelta
+
+start_time = datetime.now()
+info = "This bot was written by draigon, and is under a MIT License. \nMore info can be found here: https://git.draigon.org/ndebruin/gevin2.0 \nThe uptime for this bot is: "
+
+def info_format():
+    current_time = datetime.now()
+    difference = relativedelta.relativedelta(current_time, start_time)
+    days = difference.days
+    hours = difference.hours
+    full_string = info + "{} Day(s), {} Hour(s).".format(days, hours)
+    return full_string
 
 #load_dotenv()
 client = discord.Client()
@@ -22,7 +35,6 @@ async def daily_notify():
             no_periods()
         else:
             return
-
 
 def no_periods():
     per1.stop()
@@ -103,6 +115,8 @@ async def on_message(message):
             await message.channel.send(message.author.mention+" Tomorrow is not a School day.")
         else:
             await message.channel.send(message.author.mention + " " + temp)
+    if "^info" in str(message.content.lower()):
+        await message.channel.send(info_format)
         
 daily_notify.start()
 temp.start()

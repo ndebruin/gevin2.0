@@ -5,3 +5,4 @@ recurring_ical_events
 datetime
 aiocron
 requests
+python-dateutil
