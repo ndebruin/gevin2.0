@@ -117,6 +117,10 @@ async def on_message(message):
             await message.channel.send(message.author.mention + " " + temp)
     if "^info" in str(message.content.lower()):
         await message.channel.send(info_format())
+    if "^testing enable" in str(message.content.lower()):
+        temp.start()
+    if "^testing disable" in str(message.content.lower()):
+        temp.stop()
 
 
 daily_notify.start()
