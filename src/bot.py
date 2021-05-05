@@ -46,7 +46,7 @@ def no_periods():
 
 
 @aiocron.crontab('47 9 * * *')
-async def temp():
+async def daily_testing():
     channel = client.get_channel(829155943937212456)
     await channel.send("this should be sent at 9:47 every day")
 
@@ -84,6 +84,16 @@ async def period_start():
     per4.start()
     period_start.stop()
 
+
+daily_notify.start()
+daily_testing.start()
+per1.start()
+per2.start()
+per3.start()
+lunch.start()
+per4.start()
+
+
 @client.event
 async def on_ready():
     print('logged in as {0.user}'.format(client))
@@ -118,19 +128,10 @@ async def on_message(message):
     if "^info" in str(message.content.lower()):
         await message.channel.send(info_format())
     if "^testing enable" in str(message.content.lower()):
-        temp.start()
+        daily_testing.start()
         await message.channel.send("Daily testing message enabled")
     if "^testing disable" in str(message.content.lower()):
-        temp.stop()
+        daily_testing.stop()
         await message.channel.send("Daily testing message disabled")
-
-
-daily_notify.start()
-temp.start()
-per1.start()
-per2.start()
-per3.start()
-lunch.start()
-per4.start()
 
 client.run(getenv("KEY"))
