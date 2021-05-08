@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from os import getenv
 import discord
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 from random import randint
 import aiocron
 import asyncio
@@ -20,7 +20,7 @@ def info_format():
     full_string = info + "{} Day(s), {} Hour(s).".format(days, hours)
     return full_string
 
-#load_dotenv()
+load_dotenv()
 client = discord.Client()
 
 @aiocron.crontab('0 7 * * 1-5')
@@ -102,8 +102,13 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
+    if "^disable" in str(message.content.lower()):
+        choose_message = str(message.content.lower())
+        print(choose_message.split("^disable ",1)[1])
+        return
     if "Congratulations" in str(message.content) and str(message.author.id) == "716390085896962058":
         await message.channel.send(message.author.mention+", That is the wrong Pokémon!")
+        return
     if "cock" in str(message.content.lower()) or "dick" in str(message.content.lower()):
         length = randint(0, 10)
         strlen = ""
@@ -111,27 +116,33 @@ async def on_message(message):
             strlen += '='
             i
         await message.channel.send(message.author.mention+" Your dick is this long ˅```8" + strlen + "D```")
+        return
     if "boobs" in str(message.content.lower()) or "tits" in str(message.content.lower()) or "breasts" in str(message.content.lower()):
         await message.channel.send("``(.) (.)``")
+        return
     if "^today" in str(message.content.lower()):
         temp = format_dailyevents()
         if temp == 1:
             await message.channel.send(message.author.mention+" Today is not a School day.")
         else:
             await message.channel.send(message.author.mention + " " + temp)
+        return
     if "^tomorrow" in str(message.content.lower()):
         temp = format_tomorrowevents()
         if temp == 1:
             await message.channel.send(message.author.mention+" Tomorrow is not a School day.")
         else:
             await message.channel.send(message.author.mention + " " + temp)
+        return
     if "^info" in str(message.content.lower()):
         await message.channel.send(info_format())
     if "^testing enable" in str(message.content.lower()):
         daily_testing.start()
         await message.channel.send("Daily testing message enabled")
+        return
     if "^testing disable" in str(message.content.lower()):
         daily_testing.stop()
         await message.channel.send("Daily testing message disabled")
+        return
 
 client.run(getenv("KEY"))
