@@ -1,12 +1,16 @@
 #!/usr/bin/python
 from os import getenv
 import discord
-from dotenv import load_dotenv
 from random import randint
 from calfunc import format_dailyevents, format_tomorrowevents
 from datetime import datetime
 from dateutil import relativedelta
 from crontab import per1, per2, per3, lunch, per4, daily_testing, daily_notify
+
+#from dotenv import load_dotenv
+#load_dotenv()
+
+client = discord.Client()
 
 start_time = datetime.now()
 info = "This bot was written by ndebruin, and is under a MIT License. \nMore info can be found here: https://git.draigon.org/ndebruin/gevin2.0 \nThe uptime for this bot is: "
@@ -19,8 +23,6 @@ def info_format():
     full_string = info + "{} Day(s), {} Hour(s).".format(days, hours)
     return full_string
 
-load_dotenv()
-client = discord.Client()
 
 #@aiocron.crontab('0 7 * * 1-5')
 #async def daily_notify():

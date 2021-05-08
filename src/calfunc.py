@@ -1,11 +1,14 @@
+#!/usr/bin/python
+
 import icalendar
 import recurring_ical_events
 from requests import get
 from os import getenv
 from datetime import date, timedelta
-from dotenv import load_dotenv
 
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
+
 callink = getenv("LINK")
 
 def get_dailyevents():
