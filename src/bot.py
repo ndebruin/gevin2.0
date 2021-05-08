@@ -45,7 +45,6 @@ def no_periods():
     per4.stop()
     period_start.start()
 
-
 @aiocron.crontab('47 9 * * *')
 async def daily_testing():
     channel = client.get_channel(829155943937212456)
@@ -94,7 +93,6 @@ per3.start()
 lunch.start()
 per4.start()
 
-
 @client.event
 async def on_ready():
     print('logged in as {0.user}'.format(client))
@@ -137,13 +135,13 @@ async def on_message(message):
         return
     if "^info" in str(message.content.lower()):
         await message.channel.send(info_format())
-    if "^testing enable" in str(message.content.lower()):
-        daily_testing.start()
-        await message.channel.send("Daily testing message enabled")
-        return
-    if "^testing disable" in str(message.content.lower()):
-        daily_testing.stop()
-        await message.channel.send("Daily testing message disabled")
-        return
+#    if "^testing enable" in str(message.content.lower()):
+#        crontab.daily_testing.start()
+#        await message.channel.send("Daily testing message enabled")
+#        return
+#    if "^testing disable" in str(message.content.lower()):
+#        crontab.daily_testing.stop()
+#        await message.channel.send("Daily testing message disabled")
+#        return
 
 client.run(getenv("KEY"))
