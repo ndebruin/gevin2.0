@@ -10,6 +10,10 @@ import aiocron
 from dotenv import load_dotenv
 load_dotenv()
 
+breasts_enabled = True
+dick_enabled = True
+pokemon_enabled = True
+
 client = discord.Client()
 
 start_time = datetime.now()
@@ -22,7 +26,6 @@ def info_format():
     hours = difference.hours
     full_string = info + "{} Day(s), {} Hour(s).".format(days, hours)
     return full_string
-
 
 @aiocron.crontab('0 7 * * 1-5')
 async def daily_notify():
@@ -99,16 +102,60 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    global breasts_enabled
+    global dick_enabled
+    global pokemon_enabled
+    content = str(message.content.lower())
     if message.author == client.user:
         return
-    if "^disable" in str(message.content.lower()):
-        choose_message = str(message.content.lower())
-        print(choose_message.split("^disable ",1)[1])
-        return
+    if "^disable" in content and str(message.author.id) == "331237610460807168":
+        choice = str(content.split("^disable ",1)[1])
+        if choice == "tits":
+            breasts_enabled = False
+            message.channel.send("``tits`` disabled")
+            return
+        if choice == "testing":
+            message.channel.send("daily testing message disabled")
+            daily_testing.stop()
+            return
+        if choice == "pokemon":
+            message.channel.send("pokemon disabled")
+            pokemon_enabled = False
+            return
+        if choice == "dick":
+            message.channel.send("``dick`` disabled")
+            dick_enabled = False
+            return
+        if choice == "periods":
+            message.channel.send("period notifications disabled for one day")
+            no_periods()
+            return
+        else:
+            return
+    if "^enable" in content and str(message.author.id) == "331237610460807168":
+        choice = str(content.split("^enable ",1)[1])
+        if choice == "tits":
+            message.channel.send("``tits`` enabled")
+            breasts_enabled = True
+            return
+        if choice == "testing":
+            message.channel.send("daily testing message enabled")
+            daily_testing.stop()
+            return
+        if choice == "pokemon":
+            message.channel.send("pokemon enabled")
+            pokemon_enabled = True
+            return
+        if choice == "dick":
+            message.channel.send("``dick`` enabled")
+            dick_enabled = True
+            return
+        else:
+            return
     if "Congratulations" in str(message.content) and str(message.author.id) == "716390085896962058":
         await message.channel.send(message.author.mention+", That is the wrong Pokémon!")
         return
-    if "cock" in str(message.content.lower()) or "dick" in str(message.content.lower()):
+    if dick_enabled and ("cock" in content or "dick" in content):
         length = randint(0, 10)
         strlen = ""
         for i in range(length):
@@ -116,32 +163,24 @@ async def on_message(message):
             i
         await message.channel.send(message.author.mention+" Your dick is this long ˅```8" + strlen + "D```")
         return
-    if "boobs" in str(message.content.lower()) or "tits" in str(message.content.lower()) or "breasts" in str(message.content.lower()):
+    if "boobs" in content or "tits" in content or "breasts" in content:
         await message.channel.send("``(.) (.)``")
         return
-    if "^today" in str(message.content.lower()):
+    if "^today" in content:
         temp = format_dailyevents()
         if temp == 1:
             await message.channel.send(message.author.mention+" Today is not a School day.")
         else:
             await message.channel.send(message.author.mention + " " + temp)
         return
-    if "^tomorrow" in str(message.content.lower()):
+    if "^tomorrow" in content:
         temp = format_tomorrowevents()
         if temp == 1:
             await message.channel.send(message.author.mention+" Tomorrow is not a School day.")
         else:
             await message.channel.send(message.author.mention + " " + temp)
         return
-    if "^info" in str(message.content.lower()):
+    if "^info" in content:
         await message.channel.send(info_format())
-#    if "^testing enable" in str(message.content.lower()):
-#        crontab.daily_testing.start()
-#        await message.channel.send("Daily testing message enabled")
-#        return
-#    if "^testing disable" in str(message.content.lower()):
-#        crontab.daily_testing.stop()
-#        await message.channel.send("Daily testing message disabled")
-#        return
 
 client.run(getenv("KEY"))
