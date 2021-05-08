@@ -112,22 +112,22 @@ async def on_message(message):
         choice = str(content.split("^disable ",1)[1])
         if choice == "tits":
             breasts_enabled = False
-            message.channel.send("``tits`` disabled")
+            await message.channel.send("``tits`` disabled")
             return
         if choice == "testing":
-            message.channel.send("daily testing message disabled")
+            await message.channel.send("daily testing message disabled")
             daily_testing.stop()
             return
         if choice == "pokemon":
-            message.channel.send("pokemon disabled")
+            await message.channel.send("pokemon disabled")
             pokemon_enabled = False
             return
         if choice == "dick":
-            message.channel.send("``dick`` disabled")
+            await message.channel.send("``dick`` disabled")
             dick_enabled = False
             return
         if choice == "periods":
-            message.channel.send("period notifications disabled for one day")
+            await message.channel.send("period notifications disabled for one day")
             no_periods()
             return
         else:
@@ -135,19 +135,19 @@ async def on_message(message):
     if "^enable" in content and str(message.author.id) == "331237610460807168":
         choice = str(content.split("^enable ",1)[1])
         if choice == "tits":
-            message.channel.send("``tits`` enabled")
+            await message.channel.send("``tits`` enabled")
             breasts_enabled = True
             return
         if choice == "testing":
-            message.channel.send("daily testing message enabled")
+            await message.channel.send("daily testing message enabled")
             daily_testing.stop()
             return
         if choice == "pokemon":
-            message.channel.send("pokemon enabled")
+            await message.channel.send("pokemon enabled")
             pokemon_enabled = True
             return
         if choice == "dick":
-            message.channel.send("``dick`` enabled")
+            await message.channel.send("``dick`` enabled")
             dick_enabled = True
             return
         else:
