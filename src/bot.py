@@ -152,7 +152,7 @@ async def on_message(message):
             return
         else:
             return
-    if "Congratulations" in str(message.content) and str(message.author.id) == "716390085896962058":
+    if pokemon_enabled and "Congratulations" in str(message.content) and str(message.author.id) == "716390085896962058":
         await message.channel.send(message.author.mention+", That is the wrong Pokémon!")
         return
     if dick_enabled and ("cock" in content or "dick" in content):
@@ -163,7 +163,7 @@ async def on_message(message):
             i
         await message.channel.send(message.author.mention+" Your dick is this long ˅```8" + strlen + "D```")
         return
-    if "boobs" in content or "tits" in content or "breasts" in content:
+    if breasts_enabled and ("boobs" in content or "tits" in content or "breasts" in content):
         await message.channel.send("``(.) (.)``")
         return
     if "^today" in content:
