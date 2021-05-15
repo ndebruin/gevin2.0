@@ -100,6 +100,8 @@ per4.start()
 async def on_ready():
     print('logged in as {0.user}'.format(client))
 
+await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="Never Gonna Give You Up"))
+
 @client.event
 async def on_message(message):
     global breasts_enabled
