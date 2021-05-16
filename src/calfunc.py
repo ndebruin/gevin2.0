@@ -18,7 +18,7 @@ def get_dailyevents():
     today = date.today()
 
     calendar = icalendar.Calendar.from_ical(cal)
-    events = recurring_ical_events.of(calendar).at(2021)
+    events = recurring_ical_events.of(calendar).at(today.year)
 
     for event in events:
             day = event["DTSTART"].dt
@@ -58,7 +58,7 @@ def get_tomorrowevents():
     tomorrow = date.today()+timedelta(1)
 
     calendar = icalendar.Calendar.from_ical(cal)
-    events = recurring_ical_events.of(calendar).at(2021)
+    events = recurring_ical_events.of(calendar).at(tomorrow.year)
 
     for event in events:
             day = event["DTSTART"].dt
