@@ -13,7 +13,7 @@ def lastfm_get():
     }
 
     payload = {
-        'api_key': str(getenv("KEY")),
+        'api_key': str(getenv("LASTFM_KEY")),
         'method': 'user.getrecenttracks',
         'user': str(getenv("LASTFM_USER")),
         'nowplaying': 'true',

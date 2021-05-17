@@ -6,12 +6,9 @@ from calfunc import format_dailyevents, format_tomorrowevents
 from datetime import datetime
 from dateutil import relativedelta
 import aiocron
-from lastfm import format_lastfm
 
-#from dotenv import load_dotenv
-#load_dotenv()
-
-album_name, asset_name, title = format_lastfm()
+from dotenv import load_dotenv
+load_dotenv()
 
 breasts_enabled = True
 dick_enabled = True
@@ -90,7 +87,6 @@ async def period_start():
     per4.start()
     period_start.stop()
 
-
 daily_notify.start()
 daily_testing.start()
 per1.start()
@@ -102,9 +98,6 @@ per4.start()
 @client.event
 async def on_ready():
     print('logged in as {0.user}'.format(client))
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=title, assets={"large_image": asset_name, "large_text": album_name, "small_image" asset_name, "small_text": album_name}))
-
-
 
 @client.event
 async def on_message(message):
