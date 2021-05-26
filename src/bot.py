@@ -129,6 +129,15 @@ async def on_message(message):
             await message.channel.send("period notifications disabled for one day")
             no_periods()
             return
+        if choice == "school":
+            await message.channel.send("school notifications disabled.")
+            daily_notify.stop()
+            per1.stop()
+            per2.stop()
+            per3.stop()
+            lunch.stop()
+            per4.stop()
+            return
         else:
             return
     if "^enable" in content and str(message.author.id) == "331237610460807168":
