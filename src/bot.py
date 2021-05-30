@@ -98,7 +98,7 @@ per4.start()
 @client.event
 async def on_ready():
     print('logged in as {0.user}'.format(client))
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType("listening"), name="Never Going to Give You Up"))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="Never Going to Give You Up"))
 
 @client.event
 async def on_message(message):
