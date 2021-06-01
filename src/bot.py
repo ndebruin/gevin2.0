@@ -7,8 +7,8 @@ from datetime import datetime
 from dateutil import relativedelta
 import aiocron
 
-#from dotenv import load_dotenv
-#load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 
 breasts_enabled = True
 dick_enabled = True
@@ -87,13 +87,13 @@ async def period_start():
     per4.start()
     period_start.stop()
 
-daily_notify.start()
-daily_testing.start()
-per1.start()
-per2.start()
-per3.start()
-lunch.start()
-per4.start()
+#daily_notify.start()
+#daily_testing.start()
+#per1.start()
+#per2.start()
+#per3.start()
+#lunch.start()
+#per4.start()
 
 @client.event
 async def on_ready():
@@ -133,11 +133,11 @@ async def on_message(message):
         if choice == "school":
             await message.channel.send("school notifications disabled.")
             daily_notify.stop()
-            per1.stop()
-            per2.stop()
-            per3.stop()
-            lunch.stop()
-            per4.stop()
+            per1.disable()
+            per2.dksable()
+            per3.disable()
+            lunch.disable()
+            per4.disable()
             return
         else:
             return
