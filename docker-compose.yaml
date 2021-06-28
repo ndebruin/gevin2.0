@@ -9,4 +9,5 @@ services:
       - "TZ=America/New_York"
       - LINK=$LINK
       - KEY=$KEY
+    restart: always
 
