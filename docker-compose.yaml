@@ -3,7 +3,7 @@ version: "3"
 services:
   gevin:
     container_name: "gevin_bot"
-    build: .
+    #build: .
     image: gevin:latest
     environment:
       - "TZ=America/New_York"
