@@ -8,8 +8,8 @@ from dateutil import relativedelta
 import aiocron
 from requests import get
 
-from dotenv import load_dotenv
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 
 breasts_enabled = True
 dick_enabled = True
