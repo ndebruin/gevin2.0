@@ -6,13 +6,15 @@ from calfunc import format_dailyevents, format_tomorrowevents
 from datetime import datetime
 from dateutil import relativedelta
 import aiocron
+from requests import get
 
-#from dotenv import load_dotenv
-#load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 
 breasts_enabled = True
 dick_enabled = True
 pokemon_enabled = True
+insult_enabled = True
 
 client = discord.Client()
 
@@ -105,6 +107,7 @@ async def on_message(message):
     global breasts_enabled
     global dick_enabled
     global pokemon_enabled
+    global insult_enabled
     content = str(message.content.lower())
     if message.author == client.user:
         return
@@ -112,7 +115,7 @@ async def on_message(message):
         choice = str(content.split("^disable ",1)[1])
         if choice == "tits":
             breasts_enabled = False
-            await message.channel.send("``tits`` disabled")
+            await message.channel.send("`tits` disabled")
             return
         if choice == "testing":
             await message.channel.send("daily testing message disabled")
@@ -123,13 +126,16 @@ async def on_message(message):
             pokemon_enabled = False
             return
         if choice == "dick":
-            await message.channel.send("``dick`` disabled")
+            await message.channel.send("`dick` disabled")
             dick_enabled = False
             return
         if choice == "periods":
             await message.channel.send("period notifications disabled for one day")
             no_periods()
             return
+        if choice == "insult":
+            await message.channel.send("`insult` disabled.")
+            insult_enabled = False
         if choice == "school":
             await message.channel.send("school notifications disabled.")
             daily_notify.stop()
@@ -144,7 +150,7 @@ async def on_message(message):
     if "^enable" in content and str(message.author.id) == "331237610460807168":
         choice = str(content.split("^enable ",1)[1])
         if choice == "tits":
-            await message.channel.send("``tits`` enabled")
+            await message.channel.send("`tits` enabled")
             breasts_enabled = True
             return
         if choice == "testing":
@@ -156,9 +162,12 @@ async def on_message(message):
             pokemon_enabled = True
             return
         if choice == "dick":
-            await message.channel.send("``dick`` enabled")
+            await message.channel.send("`dick` enabled")
             dick_enabled = True
             return
+        if choice == "insult":
+            await message.channel.send("`insult` enabled")
+            insult_enabled = True
         else:
             return
     if pokemon_enabled and "Congratulations" in str(message.content) and str(message.author.id) == "716390085896962058":
@@ -173,8 +182,18 @@ async def on_message(message):
         await message.channel.send(message.author.mention+" Your dick is this long ˅```8" + strlen + "D```")
         return
     if breasts_enabled and ("boobs" in content or "tits" in content or "breasts" in content):
-        await message.channel.send("``(.) (.)``")
+        await message.channel.send("`(.) (.)`")
         return
+    if insult_enabled and "^insult" in content:
+        try: user = str(content.split("^insult ",1)[1])
+        except: user = message.author.mention
+        insult = get("https://evilinsult.com/generate_insult.php").text
+        if user == "<@!814571290941718561>":
+            insult = "How original. No one else had thought of trying to get the bot to insult itself. I applaud your creativity. Yawn. Perhaps this is why you don't have friends. You don't add anything new to any conversation. You are more of a bot than me, predictable answers, and absolutely dull to have an actual conversation with."
+            user = message.author.mention
+        await message.channel.send(user + " " + insult)
+        return
+
     if "^today" in content:
         temp = format_dailyevents()
         if temp == 1:
