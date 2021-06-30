@@ -119,7 +119,7 @@ async def on_message(message):
             return
         if choice == "testing":
             await message.channel.send("daily testing message disabled")
-            daily_testing.stop()
+            #daily_testing.stop()
             return
         if choice == "pokemon":
             await message.channel.send("pokemon disabled")
