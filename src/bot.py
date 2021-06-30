@@ -131,19 +131,19 @@ async def on_message(message):
             return
         if choice == "periods":
             await message.channel.send("period notifications disabled for one day")
-            no_periods()
+            #no_periods()
             return
         if choice == "insult":
             await message.channel.send("`insult` disabled.")
             insult_enabled = False
         if choice == "school":
             await message.channel.send("school notifications disabled.")
-            daily_notify.stop()
-            per1.disable()
-            per2.dksable()
-            per3.disable()
-            lunch.disable()
-            per4.disable()
+            #daily_notify.stop()
+            #per1.disable()
+            #per2.disable()
+            #per3.disable()
+            #lunch.disable()
+            #per4.disable()
             return
         else:
             return
@@ -155,7 +155,7 @@ async def on_message(message):
             return
         if choice == "testing":
             await message.channel.send("daily testing message enabled")
-            daily_testing.stop()
+            #daily_testing.stop()
             return
         if choice == "pokemon":
             await message.channel.send("pokemon enabled")
