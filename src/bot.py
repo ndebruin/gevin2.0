@@ -19,7 +19,7 @@ insult_enabled = True
 client = discord.Client()
 
 start_time = datetime.now()
-info = "This bot was written by ndebruin, and is under a MIT License. \nMore info can be found here: https://git.draigon.org/ndebruin/gevin2.0 \nThe uptime for this bot is: "
+info = "This bot was written by ndebruin, and is under a MIT License. \nMore info can be found here: https://github.com/ndebruin/gevin2.0 \nThe uptime for this bot is: "
 
 def info_format():
     current_time = datetime.now()
